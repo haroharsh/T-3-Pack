@@ -1,0 +1,30 @@
+*** Hashing open addressing using linear probing ***
+
+HASH(key, m):
+    return key mod m
+
+INSERT(Table, key, m):
+    for i = 0 to m - 1:
+        index = (HASH(key, m) + i) % m
+        if Table[index] == None or Table[index] == "DELETED":
+            Table[index] = key
+            return
+    print "Hash table is full"
+
+SEARCH(Table, key, m):
+    for i = 0 to m - 1:
+        index = (HASH(key, m) + i) % m
+        if Table[index] == key:
+            return true
+        if Table[index] == None:
+            return false
+    return false
+
+DELETE(Table, key, m):
+    for i = 0 to m - 1:
+        index = (HASH(key, m) + i) % m
+        if Table[index] == key:
+            Table[index] = "DELETED"
+            return
+        if Table[index] == None:
+            return
