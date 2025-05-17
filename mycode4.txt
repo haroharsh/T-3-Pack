@@ -1,0 +1,22 @@
+*** DFS Algorithm ***
+
+
+DFS(Graph, root):
+    for each node in Graph:
+        node.color = "white"
+        node.parent = null
+        node.distance = ∞
+
+    root.distance = 0
+    DFS-Visit(Graph, root)
+
+DFS-Visit(Graph, node):
+    node.color = "gray"
+
+    for each neighbor in Graph[node]:
+        if neighbor.color == "white":
+            neighbor.parent = node
+            neighbor.distance = node.distance + 1
+            DFS-Visit(Graph, neighbor)
+
+    node.color = "black"

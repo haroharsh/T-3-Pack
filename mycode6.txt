@@ -1,0 +1,29 @@
+*** BFS with adjacency matrix ***
+
+
+BFS(Adj, root):
+    n = number of nodes in Adj
+
+    for i = 0 to n - 1:
+        color[i] = "white"
+        distance[i] = ∞
+        parent[i] = null
+
+    color[root] = "gray"
+    distance[root] = 0
+    parent[root] = null
+
+    create an empty queue Q
+    enqueue(Q, root)
+
+    while Q is not empty:
+        current = dequeue(Q)
+
+        for j = 0 to n - 1:
+            if Adj[current][j] == 1 and color[j] == "white":
+                color[j] = "gray"
+                distance[j] = distance[current] + 1
+                parent[j] = current
+                enqueue(Q, j)
+
+        color[current] = "black"

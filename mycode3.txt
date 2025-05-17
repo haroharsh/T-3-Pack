@@ -1,0 +1,27 @@
+*** BFS Algorithm ***
+
+
+BFS(Graph, root):
+    for each node in Graph:
+        node.color = "white"
+        node.distance = ∞
+        node.parent = null
+
+    root.color = "gray"
+    root.distance = 0
+    root.parent = null
+
+    create an empty queue Q
+    enqueue(Q, root)
+
+    while Q is not empty:
+        current = dequeue(Q)
+
+        for each neighbor in Graph[current]:
+            if neighbor.color == "white":
+                neighbor.color = "gray"
+                neighbor.distance = current.distance + 1
+                neighbor.parent = current
+                enqueue(Q, neighbor)
+
+        current.color = "black"

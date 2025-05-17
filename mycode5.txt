@@ -1,0 +1,33 @@
+*** DFS with Stack ***
+
+
+DFS(Graph, root):
+    for each node in Graph:
+        node.color = "white"
+        node.parent = null
+        node.distance = ∞
+
+    root.color = "gray"
+    root.distance = 0
+    root.parent = null
+
+    create an empty stack S
+    push(S, root)
+
+    while S is not empty:
+        current = top(S)
+
+        all_neighbors_visited = true
+
+        for each neighbor in Graph[current]:
+            if neighbor.color == "white":
+                neighbor.color = "gray"
+                neighbor.parent = current
+                neighbor.distance = current.distance + 1
+                push(S, neighbor)
+                all_neighbors_visited = false
+                break  // explore one child at a time (depth-first)
+
+        if all_neighbors_visited:
+            pop(S)
+            current.color = "black"
