@@ -1,0 +1,23 @@
+*** Quick Sort Algorithm ***
+
+QUICK-SORT(arr, low, high):
+    if low < high:
+        pi = PARTITION(arr, low, high)
+        QUICK-SORT(arr, low, pi - 1)
+        QUICK-SORT(arr, pi + 1, high)
+
+PARTITION(arr, low, high):
+    pivot = arr[high]           // choose the last element as pivot
+    i = low - 1                 // pointer for smaller element
+
+    for j = low to high - 1:
+        if arr[j] <= pivot:
+            i = i + 1
+            swap arr[i] with arr[j]
+
+    swap arr[i + 1] with arr[high]  // place pivot at correct position
+    return i + 1                    // return pivot index
+
+Time Complexity:
+Average: O(n log n)
+Worst (already sorted): O(n²) — can be avoided by choosing a random pivot
