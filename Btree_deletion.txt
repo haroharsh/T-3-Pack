@@ -1,0 +1,33 @@
+*** B-Tree Deletion***
+
+
+DELETE(node, key):
+    if key in node:
+        if node is leaf:
+            remove key from node
+        else:
+            i = index of key in node
+            if child[i] has ≥ t keys:
+                pred = getPredecessor(child[i])
+                node.keys[i] = pred
+                DELETE(child[i], pred)
+            else if child[i+1] has ≥ t keys:
+                succ = getSuccessor(child[i+1])
+                node.keys[i] = succ
+                DELETE(child[i+1], succ)
+            else:
+                merge child[i], key, child[i+1]
+                DELETE(child[i], key)
+    else:
+        i = find child index for key
+        if child[i] has < t keys:
+            FIX-UNDERFLOW(node, i)
+        DELETE(child[i], key)
+
+FIX-UNDERFLOW(parent, i):
+    if left sibling exists and has ≥ t keys:
+        borrow from left sibling
+    else if right sibling exists and has ≥ t keys:
+        borrow from right sibling
+    else:
+        merge with a sibling

@@ -1,0 +1,17 @@
+*** B-Tree Search ***
+
+SEARCH(node, key):
+    i = 0
+
+    // Find the first key ≥ the given key
+    WHILE i < node.n AND key > node.keys[i]:
+        i = i + 1
+
+    IF i < node.n AND key == node.keys[i]:
+        RETURN (node, i)  // Key found
+
+    ELSE IF node.leaf == TRUE:
+        RETURN NULL       // Key not found
+
+    ELSE:
+        RETURN SEARCH(node.children[i], key)  // Recurse on child

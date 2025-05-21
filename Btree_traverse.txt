@@ -1,0 +1,12 @@
+*** B-tree Traversing***
+
+
+TRAVERSE(node):
+    FOR i = 0 TO node.n - 1:
+        IF node is not a leaf:
+            TRAVERSE(node.children[i])
+        PRINT node.keys[i]
+    
+    // Traverse the last child
+    IF node is not a leaf:
+        TRAVERSE(node.children[node.n])
