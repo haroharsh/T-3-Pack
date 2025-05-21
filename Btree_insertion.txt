@@ -1,0 +1,31 @@
+*** B-Tree Insertion ***
+
+
+INSERT(T, key):
+    if T.root is full:
+        newRoot = createNode()
+        newRoot.children[0] = T.root
+        SPLIT(newRoot, 0)
+        T.root = newRoot
+        INSERT-NONFULL(newRoot, key)
+    else:
+        INSERT-NONFULL(T.root, key)
+
+INSERT-NONFULL(node, key):
+    if node is leaf:
+        insert key in sorted order in node.keys
+    else:
+        find child index i where key should go
+        if child[i] is full:
+            SPLIT(node, i)
+            if key > node.keys[i]: i = i + 1
+        INSERT-NONFULL(node.children[i], key)
+
+SPLIT(parent, i):
+    child = parent.children[i]
+    newChild = createNode()
+    move second half of child.keys to newChild
+    if not child.leaf:
+        move second half of child.children to newChild
+    insert middle key to parent at position i
+    parent.children[i + 1] = newChild
